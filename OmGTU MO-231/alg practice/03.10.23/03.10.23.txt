@@ -1,0 +1,80 @@
+//using System.Collections.Immutable;
+using System;
+class Alg
+{
+    static void Main()
+    {
+        int countend = 0; 
+        int count7 = 0;
+        Boolean sum7 = true;
+
+        int nums = Convert.ToInt32(Console.ReadLine());
+
+        for (int i = 0; i < nums; i++)
+        {
+            int num10 = Convert.ToInt32(Console.ReadLine());
+            int num7 = 0;
+            int num5 = 0;
+            int num3 = 0;
+            int sum = 0;
+
+            int conv = num10;
+            int counter = 0;
+            while (conv > 0)
+            {
+                num7 += Convert.ToInt32((conv % 7) * Math.Pow(10, counter));
+                conv = conv / 7;
+                counter++;
+            }
+
+            conv = num10;
+            counter = 0;
+            while (conv > 0)
+            {
+                num5 += Convert.ToInt32((conv % 5) * Math.Pow(10, counter));
+                conv = conv / 5;
+                counter++;
+            }
+
+            conv = num10;
+            counter = 0;
+            while (conv > 0)
+            {
+                num3 += Convert.ToInt32((conv % 3) * Math.Pow(10, counter));
+                conv = conv / 3;
+                counter++;
+            }
+
+            if (((num7 % 10) == (num5 % 10)) & ((num5 % 10) == (num3 % 10)) & ((num7 % 10) == (num3 % 10)))
+            {
+                countend++;
+            }
+            conv = num10;
+            while (conv > 0)
+            {
+                if ((conv % 10) == 7)
+                {
+                    count7++;
+                    break;
+                }
+                conv = conv / 10;
+            }
+
+            conv = num10;
+            while (conv > 0)
+            {
+                sum += conv % 10;
+                conv = conv / 10;
+            }
+
+            if (sum % 7 != 0)
+            {
+                sum7 = false;
+            }
+        }
+
+        Console.WriteLine($"{countend} элементов оканчиваются на одинаковую цифру в 3, 5, 7 системах счисления");
+        Console.WriteLine($"{count7} элементов, содержащих хотя бы одну семерку");
+        Console.WriteLine($"Сумма чисел каждой строки делится на 7: {sum7}");
+    }
+}
