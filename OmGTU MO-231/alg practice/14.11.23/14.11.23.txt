@@ -1,0 +1,45 @@
+using System;
+class Alg
+{
+    static void Main()
+    {
+
+        string strok;
+        int countnechet = 0;
+        bool ispol = true;
+
+        Console.WriteLine("Введите строку");
+        strok = Console.ReadLine().Replace(" ", "").ToLower();
+        for (int i = 0; i < strok.Length; i++)
+        {
+            if (char.IsDigit(strok[i]))
+            {
+                if ((Convert.ToInt32(strok[i])) % 2 != 0)
+                {
+                    countnechet++;
+                }
+            }
+        }
+
+        for (int i = 0; i < strok.Length / 2; i++)
+        {
+            if (!strok[i].Equals(strok[strok.Length - 1 - i]))
+            {
+                ispol = false;
+                break;
+            }
+        }
+
+        if (ispol)
+        {
+            Console.WriteLine("Строка - палиндром");
+        }
+        else
+        {
+            Console.WriteLine("Строка - не палиндром");
+        }
+
+        Console.WriteLine("Количество нечетных цифр в строке: " + countnechet);
+        Console.WriteLine(strok.Replace(" ", ""));
+    }
+}
