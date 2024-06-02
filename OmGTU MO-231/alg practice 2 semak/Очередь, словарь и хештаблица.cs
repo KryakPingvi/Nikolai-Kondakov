@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 /*
 1
 
@@ -56,7 +56,7 @@ class Program
 
         Console.WriteLine("1");
         Dictionary<string, int> mesyac_Dict = new Dictionary<string, int>();
-        Dictionary<string, int> mesyac_HashTable = new Dictionary<string, int>();
+        Hashtable mesyac_HashTable = new Hashtable();
 
         foreach (var zvonok in zvonki)
         {
@@ -74,7 +74,7 @@ class Program
             string key = phoneNumber;
             if (mesyac_HashTable.ContainsKey(key))
             {
-                mesyac_HashTable[key] += minutes;
+                mesyac_HashTable[key] = (int)mesyac_HashTable[key] + minutes;
             }
             else
             {
@@ -88,7 +88,7 @@ class Program
         }
 
         Console.WriteLine("Хэш-таблица:");
-        foreach (var zvonok in mesyac_HashTable)
+        foreach (DictionaryEntry zvonok in mesyac_HashTable)
         {
             Console.WriteLine($"Телефон: {zvonok.Key}, Сумма минут: {zvonok.Value}");
         }
@@ -96,7 +96,7 @@ class Program
 
         Console.WriteLine("2");
         Dictionary<string, int> day_Dict = new Dictionary<string, int>();
-        Dictionary<string, int> day_HashTable = new Dictionary<string, int>();
+        Hashtable day_HashTable = new Hashtable();
 
         foreach (var call in zvonki)
         {
@@ -109,7 +109,7 @@ class Program
                 day_Dict[date] = mins;
 
             if (day_HashTable.ContainsKey(date))
-                day_HashTable[date] += mins;
+                day_HashTable[date] = (int)day_HashTable[date] + mins;
             else
                 day_HashTable[date] = mins;
         }
@@ -121,7 +121,7 @@ class Program
         }
 
         Console.WriteLine("Хэш-таблица:");
-        foreach (var zvonok in day_HashTable)
+        foreach (DictionaryEntry zvonok in day_HashTable)
         {
             Console.WriteLine($"Дата: {zvonok.Key}, Сумма минут: {zvonok.Value}");
         }
